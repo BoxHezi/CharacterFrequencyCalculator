@@ -11,12 +11,11 @@ public class Decoder {
     public static void main(String[] args) {
         Decoder decoder = new Decoder();
         TreeMap<Character, Integer> frequencyMap = new TreeMap<>();
-        decoder.readFromFile(frequencyMap);
-
+        frequencyMap = decoder.readFromFile(frequencyMap);
         decoder.writeToFile(frequencyMap);
     }
 
-    private void readFromFile(TreeMap<Character, Integer> map) {
+    private TreeMap<Character, Integer> readFromFile(TreeMap<Character, Integer> map) {
         Scanner inputFile = null;
         try {
             inputFile = new Scanner(new File(inputFileName));
@@ -29,15 +28,14 @@ public class Decoder {
             while (inputFile.hasNext()) {
                 String str = inputFile.next();
                 char[] charArray = str.toCharArray();
-                countFrequency(charArray, map);
+                map = countFrequency(charArray, map);
             }
             inputFile.close();
         }
+        return map;
     }
 
-    private void countFrequency(char[] charArray, TreeMap<Character, Integer> map) {
-        System.out.println(charArray);
-
+    private TreeMap<Character, Integer> countFrequency(char[] charArray, TreeMap<Character, Integer> map) {
         int counter;
         for (char c : charArray) {
             counter = 0;
@@ -48,6 +46,7 @@ public class Decoder {
             map.put(c, ++counter);
             System.out.println(map);
         }
+        return map;
     }
 
     private void writeToFile(TreeMap<Character, Integer> map) {
@@ -59,7 +58,16 @@ public class Decoder {
         }
 
         if (null != outputFile) {
-            outputFile.println("Hello World");
+            Character c = 'A';
+            for (int i = 0; i < 26; i++) {
+                outputFile.print(c + ": ");
+                Integer integer = map.get(c);
+                if (null == integer) {
+                    integer = 0;
+                }
+                outputFile.println(integer);
+                c = (char) (c + 1);
+            }
             outputFile.close();
         }
     }
