@@ -4,15 +4,15 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class Decoder {
+public class CharacterFrequencyCounter {
     private static final String inputFileName = "input.txt";
     private static final String outputFileName = "output.txt";
 
     public static void main(String[] args) {
-        Decoder decoder = new Decoder();
+        CharacterFrequencyCounter counter = new CharacterFrequencyCounter();
         TreeMap<Character, Integer> frequencyMap = new TreeMap<>();
-        frequencyMap = decoder.readFromFile(frequencyMap);
-        decoder.writeToFile(frequencyMap);
+        frequencyMap = counter.readFromFile(frequencyMap);
+        counter.writeToFile(frequencyMap);
     }
 
     private TreeMap<Character, Integer> readFromFile(TreeMap<Character, Integer> map) {
