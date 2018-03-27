@@ -1,2 +1,2 @@
-# SimpleSubstitutionDecoder
-SimpleSubstitutionDecoder
+# CharacterFrequencyCalculator
+CharacterFrequencyCalculator
